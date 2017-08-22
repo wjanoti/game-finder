@@ -28,14 +28,21 @@ export default class Game extends React.Component {
 
   renderGenres = (game) => {
     return 'genres' in game ? 
-      game.genres.map(genre => 
-        <Chip 
-          key={genre.id} 
-          style={styles.game.chip}
-        >
-          {genre.name}
-        </Chip>) : 
-      null;
+      game.genres.map(genre => <Chip key={genre.id} style={styles.game.chip}>{genre.name}</Chip>) : 
+      <Chip style={styles.game.chip}>N/A</Chip>;
+  }
+
+  renderReleaseDates = (game) => {
+    return 'release_dates' in game ? 
+        <Chip style={styles.game.chip} labelStyle={{lineHeight: 'auto'}}>
+          {
+            game.release_dates.map(releaseDate => { 
+              return { date: releaseDate.date, human: releaseDate.human }
+            }).reduce((p,v) => p.date < v.date ? p : v).human
+          }
+        </Chip>
+      : 
+      <Chip style={styles.game.chip}>N/A</Chip>;
   }
 
   shouldComponentUpdate(nextProps) {
@@ -57,7 +64,11 @@ export default class Game extends React.Component {
           <CardText style={styles.game.cardText}>
             <span style={{color: '#117ddb', float: 'left', width:'10%'}}>Platforms:</span>
             <div style={{float: 'left', width: '90%'}}>{this.renderPlatforms(game)}</div>
-            <p style={{clear: 'both'}}>{game.summary}</p>
+            <div style={{ marginTop: '30px', paddingTop: '10px'}}>
+              <span style={{color: '#117ddb', float: 'left', width:'20%'}}>Release date (earliest):</span>
+              <div style={{float: 'left', width: '80%'}}>{this.renderReleaseDates(game)}</div>
+            </div>
+            <p style={{clear: 'both' , marginTop: '30px', paddingTop: '10px'}}>{game.summary}</p>
           </CardText>
         </Card>
         : 
