@@ -6,7 +6,7 @@ import { styles } from './styles';
 
 const Game = ({ game }) => {
   
-  const getPlatforms = (game) => {
+  const renderPlatforms = (game) => {
     return 'platforms' in game ? 
       game.platforms.map(platform => 
         <Chip 
@@ -17,7 +17,7 @@ const Game = ({ game }) => {
         > 
           {platform.name}
         </Chip>) : 
-      null;
+      <Chip labelColor="#666" labelStyle={{lineHeight: 'auto'}} style={styles.game.platformChip}>N/A</Chip>
   }
 
   const getScreenshot = (game) => {
@@ -50,7 +50,7 @@ const Game = ({ game }) => {
         />
         <CardText style={styles.game.cardText}>
           <span style={{color: '#117ddb', float: 'left', width:'10%'}}>Platforms:</span>
-          <div style={{float: 'left', width: '90%'}}>{getPlatforms(game)}</div>
+          <div style={{float: 'left', width: '90%'}}>{renderPlatforms(game)}</div>
           <p style={{clear: 'both'}}>{game.summary}</p>
         </CardText>
       </Card>

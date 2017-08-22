@@ -34,7 +34,11 @@ export default class Search extends React.Component {
     fetch(`/api/game/${gameId}`)
       .then(response => response.json())
       .then(responseJson => {
-        this.fetchPlatforms([...new Set(responseJson.body[0].release_dates.map(release_date => release_date.platform))]);
+        if (responseJson.body[0].release_dates) {
+          this.fetchPlatforms(
+            [...new Set(responseJson.body[0].release_dates.map(release_date => release_date.platform))]
+          );
+        }
         this.setState({
           selectedGame: responseJson.body[0]
         })
