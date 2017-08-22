@@ -4,9 +4,9 @@ import Paper from 'material-ui/Paper';
 import Chip from 'material-ui/Chip';
 import { styles } from './styles';
 
-const Game = ({ game }) => {
-  
-  const renderPlatforms = (game) => {
+export default class Game extends React.Component {
+
+  renderPlatforms = (game) => {
     return 'platforms' in game ? 
       game.platforms.map(platform => 
         <Chip 
@@ -20,13 +20,13 @@ const Game = ({ game }) => {
       <Chip labelColor="#666" labelStyle={{lineHeight: 'auto'}} style={styles.game.platformChip}>N/A</Chip>
   }
 
-  const getScreenshot = (game) => {
+  getScreenshotUrl = (game) => {
     return 'screenshots' in game ? 
       game.screenshots[Math.floor(Math.random() * game.screenshots.length)].url.replace('thumb', 'screenshot_big') :
       '';
   }
 
-  const getGenres = (game) => {
+  renderGenres = (game) => {
     return 'genres' in game ? 
       game.genres.map(genre => 
         <Chip 
@@ -38,25 +38,30 @@ const Game = ({ game }) => {
       null;
   }
 
-	return (
-	  Object.keys(game).length ?
-      <Card style={styles.game.card}>
-        <CardHeader className='cardHeader'
-          title={<h1 style={styles.game.title}>{game.name}</h1>}
-          subtitle={getGenres(game)}
-          avatar={<img src={game.cover ? game.cover.url.replace('thumb', 'cover_big') : ''} />}
-          style={{ background: `url(${getScreenshot(game)})`, backgroundSize: '100%' }}
-          children={<div className='screenshotOverlay'></div>}
-        />
-        <CardText style={styles.game.cardText}>
-          <span style={{color: '#117ddb', float: 'left', width:'10%'}}>Platforms:</span>
-          <div style={{float: 'left', width: '90%'}}>{renderPlatforms(game)}</div>
-          <p style={{clear: 'both'}}>{game.summary}</p>
-        </CardText>
-      </Card>
-      : 
-      null
-    );
-};
+  shouldComponentUpdate(nextProps) {
+    return this.props.game !== nextProps.game;
+  }
 
-export default Game;
+  render() {
+    const { game } = this.props;
+    return (
+      Object.keys(game).length ?
+        <Card style={styles.game.card}>
+          <CardHeader className='cardHeader'
+            title={<h1 style={styles.game.title}>{game.name}</h1>}
+            subtitle={this.renderGenres(game)}
+            avatar={<img src={game.cover ? game.cover.url.replace('thumb', 'cover_big') : ''} />}
+            style={{ background: `url(${this.getScreenshotUrl(game)})`, backgroundSize: '100%' }}
+            children={<div className='screenshotOverlay'></div>}
+          />
+          <CardText style={styles.game.cardText}>
+            <span style={{color: '#117ddb', float: 'left', width:'10%'}}>Platforms:</span>
+            <div style={{float: 'left', width: '90%'}}>{this.renderPlatforms(game)}</div>
+            <p style={{clear: 'both'}}>{game.summary}</p>
+          </CardText>
+        </Card>
+        : 
+        null
+      );
+  }
+}
