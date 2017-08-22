@@ -2,8 +2,9 @@ import React from 'react';
 import TextField from 'material-ui/TextField';
 import AutoComplete from 'material-ui/AutoComplete';
 import { Grid, Row, Col } from 'react-bootstrap';
-// import Game from './Game.jsx';
+import Game from './Game.jsx';
 import { styles } from './styles.js';
+
 export default class Search extends React.Component {
 
   constructor(props) {
@@ -59,7 +60,7 @@ export default class Search extends React.Component {
     return (
       <Grid>
           <Row>
-              <span style={styles.pageTitle}>GameFinder</span>
+              <span style={styles.search.pageTitle}>GameFinder</span>
                 <AutoComplete
                   fullWidth
                   dataSource={this.state.suggestions}
@@ -70,10 +71,10 @@ export default class Search extends React.Component {
                   filter={AutoComplete.noFilter}
                   hintText="Game title"
                   floatingLabelText="Search for a game"
-                  floatingLabelStyle={styles.floatingLabel}
-                  style={styles.textField}
-                  underlineFocusStyle={styles.underlineFocus}
-                  underlineStyle={styles.underline}
+                  floatingLabelStyle={styles.search.floatingLabel}
+                  style={styles.search.textField}
+                  underlineFocusStyle={styles.search.underlineFocus}
+                  underlineStyle={styles.search.underline}
                   onUpdateInput={(gameName) => { gameName.length % 3 === 0 ? this.fetchSuggestions(gameName) : null }}
                   onNewRequest={(game) => this.fetchGameInfo(game.id)}
                 />
@@ -81,7 +82,7 @@ export default class Search extends React.Component {
             <Row>
               <Col xs={12} md={12}>
                 <div style={{marginTop: '20px'}}>
-                  {/* <Game game={this.state.selectedGame} /> */}
+                  <Game game={this.state.selectedGame} />
                 </div>
               </Col>
             </Row>
