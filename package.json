@@ -6,6 +6,7 @@
   "author": "William Janoti",
   "license": "MIT",
   "scripts": {
+    "start": "webpack && node index.js",
     "dev-client": "webpack-dev-server --progress --colors",
     "dev-server": "nodemon index.js"
   },
