@@ -6,17 +6,31 @@
   "author": "William Janoti",
   "license": "MIT",
   "scripts": {
-    "dev-server": "webpack-dev-server"
+    "dev-server": "webpack-dev-server --progress --colors"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.0",
+    "babel-preset-react": "^6.24.1",
     "css-loader": "^0.28.5",
+    "file-loader": "^0.11.2",
     "html-webpack-plugin": "^2.30.1",
     "img-loader": "^2.0.0",
+    "nodemon": "^1.11.0",
+    "style-loader": "^0.18.2",
     "url-loader": "^0.5.9",
-    "webpack": "^3.5.5",
     "webpack-dev-server": "^2.7.1"
+  },
+  "dependencies": {
+    "apicache": "^0.9.0",
+    "express": "^4.15.4",
+    "igdb-api-node": "^3.0.2",
+    "material-ui": "^0.19.0",
+    "path": "^0.12.7",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-tap-event-plugin": "^2.0.1",
+    "webpack": "^3.5.5"
   }
 }

@@ -1,0 +1,16 @@
+body {
+	font-family: "Roboto", sans-serif;
+  margin: 40px;
+  background: url('./images/background.png');
+}
+
+@font-face {
+  font-family: 'Old School Adventures';
+  src: url('./fonts/OldSchoolAdventures.woff') format('woff'),
+    url('./fonts/OldSchoolAdventures.ttf') format('truetype');
+}
+
+.chip {
+  float: left;
+  margin: 5;
+}
