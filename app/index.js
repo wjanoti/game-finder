@@ -4,6 +4,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import App from './components/App.jsx';
 import './styles.css';
 
 // Needed for onTouchTap
@@ -11,6 +12,7 @@ import './styles.css';
 injectTapEventPlugin();
 ReactDOM.render(
   <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
+    <App />
   </MuiThemeProvider>,
   document.getElementById('root')
 );
