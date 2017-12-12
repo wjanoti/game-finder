@@ -1,6 +1,6 @@
 const express = require('express');
 const igdb = require('igdb-api-node').default;
-const client = igdb('efe3f14051a91467aae9f10fd5e9d748');
+const client = igdb('11c2fc7bbc3762380a286083b1199471');
 const app = express();
 const path = require('path');
 
