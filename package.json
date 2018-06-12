@@ -6,9 +6,8 @@
   "author": "William Janoti",
   "license": "MIT",
   "scripts": {
-    "start": "webpack && node index.js",
-    "dev-client": "webpack-dev-server --progress --colors",
-    "dev-server": "nodemon index.js"
+    "start": "webpack --mode production && node index.js",
+    "dev": "webpack-dev-server --mode development --progress --colors --open | nodemon index.js"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
